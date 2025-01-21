@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --job-name=spades_assembly       # Job name
+#SBATCH --partition=nodes                # Specify the partition to use (e.g., 'nodes')
+#SBATCH --ntasks=1                       # Number of tasks (1 in this case)
+#SBATCH --cpus-per-task=4                # Number of CPUs per task
+#SBATCH --mem=32G                        # Memory per node (adjust as needed)
+#SBATCH --time=48:00:00                  # Walltime (adjust as needed)
+
+# Activate the conda environment where SPAdes is installed
+source ~/miniconda3/bin/activate spades
+
+# Run the SPAdes command
+spades.py --meta -1 /mnt/scratch/projects/biol-soilv-2024/clean_fresh_virome_R1.fq \
+          -2 /mnt/scratch/projects/biol-soilv-2024/clean_fresh_virome_R2.fq \
+          -o /mnt/scratch/projects/biol-soilv-2024/spade_fresh_assembly_results
