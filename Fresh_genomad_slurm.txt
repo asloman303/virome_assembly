@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH --job-name=genomad_fresh
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=20G
+#SBATCH --time=04:00:00
+
+# Load relevant modules and pre-installed environment
+module load Miniconda3/23.5.2-0
+source activate genomad            # update to whatever you've named your genomad environment
+
+
+genomad end-to-end --cleanup --threads 4 /mnt/scratch/projects/biol-soilv-2024/virome_assembly/spade_fresh_assembly_results/contigs.fasta fresh_genomad_results.txt /mnt/scratch/projects/biol-soilv-2024/genomad_db

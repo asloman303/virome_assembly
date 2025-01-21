@@ -1,0 +1,14 @@
+# Make a genomad environment 
+conda create -n genomad -c conda-forge -c bioconda genomad
+
+# activate the environment 
+conda activate genomad 
+
+# download the genomad database 
+genomad download-database .
+
+# run genomad pipeline on a fasta file (I was running it on individual bins from the meta analysis)
+
+genomad end-to-end --cleanup --splits 8 /mnt/scratch/projects/biol-soilv-2024/assembly.fasta.metabat-bins-20241212_102149/bin.747.fa genomad_output genomad_db
+
+# genomad end-to-end (options, cleanup deletes unnecessary files and splits 8 means it analyses the file in chunks) (input file) (output file) (database)

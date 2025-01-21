@@ -1,0 +1,10 @@
+#!/bin/bash
+#SBATCH --job-name=fresh_kraken              # job name (shows up in the queue)
+#SBATCH --time=5:00:00                                         # Walltime (HH:MM:SS)
+#SBATCH --mem=100G                                                       # memory/cpu (in MB)
+#SBATCH --cpus-per-task=1
+
+module load Kraken2/2.1.2-gompi-2021a
+
+
+kraken2 --db /mnt/scratch/projects/biol-soilv-2024/databases/kraken2_v2 --threads 2 --report fresh_kraken_report.txt --report-minimizer-data --minimum-hit-groups 2  --use-names --paired  clean_fresh_virome_R1.fq clean_fresh_virome_R2.fq   
